@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>Student Tax Studio – Calculator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
@@ -9,18 +8,23 @@
 
 <body>
 
+<div class="navbar">
+  <div class="nav-logo">Student Tax Studio</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="guide.html">Learn</a>
+    <a href="terms.html">Glossary</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+
 <div class="container">
 
-<!-- ===============================
-     INPUT SECTION
-================================ -->
-
 <div class="card fade-in">
-
   <h2>Your Information</h2>
 
   <div class="form-grid">
-
     <div>
       <label>Filing Status</label>
       <select id="status">
@@ -31,59 +35,30 @@
     </div>
 
     <div>
-      <label>State</label>
-      <select id="state">
-        <option value="no">No Income Tax State</option>
-        <option value="tax">State With Income Tax</option>
-      </select>
-    </div>
-
-    <div>
       <label>W-2 Income ($)</label>
-      <input id="income" type="number" placeholder="0">
+      <input id="income" type="number">
     </div>
 
     <div>
       <label>Federal Tax Withheld ($)</label>
-      <input id="withheld" type="number" placeholder="0">
+      <input id="withheld" type="number">
     </div>
 
     <div>
       <label>Self-Employment Income ($)</label>
-      <input id="self" type="number" placeholder="0">
+      <input id="self" type="number">
     </div>
-
   </div>
-
-  <h3>Completion Progress</h3>
-  <div class="progress-container">
-    <div id="progressBar" class="progress-bar"></div>
-  </div>
-
 </div>
 
-<!-- ===============================
-     OUTCOME SECTION
-================================ -->
-
 <div class="card fade-in">
-
   <h2>Estimated Outcome</h2>
-
-  <div id="resultCard" class="result-box info">
-    Enter income to begin calculation.
-  </div>
 
   <div id="refundAmount" class="refund-amount">$0.00</div>
 
-  <div id="stateNotice"></div>
-
-  <button id="toggleBreakdown">View Detailed Breakdown</button>
-
   <div class="divider"></div>
 
-  <div id="breakdownPanel" class="breakdown hidden">
-
+  <div class="breakdown">
     <div>Standard Deduction</div>
     <div id="deductionRow">$0</div>
 
@@ -96,36 +71,9 @@
     <div>Self-Employment Tax</div>
     <div id="seTaxRow">$0</div>
 
-    <div><strong>Total Withholding</strong></div>
+    <div>Total Withholding</div>
     <div id="withholdingRow">$0</div>
-
   </div>
-
-  <div class="divider"></div>
-
-  <h3>Tax Bracket Visualization</h3>
-  <div id="bracketChart" class="bracket-chart"></div>
-
-  <div class="divider"></div>
-
-  <h3>How This Was Calculated</h3>
-  <div class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-header">Standard Deduction</div>
-      <div class="accordion-content">
-        The standard deduction reduces your taxable income based on filing status.
-      </div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header">Progressive Tax Brackets</div>
-      <div class="accordion-content">
-        Income is taxed in layers at increasing rates.
-      </div>
-    </div>
-  </div>
-
-  <button onclick="window.print()">Download Summary</button>
-
 </div>
 
 </div>
