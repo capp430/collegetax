@@ -140,7 +140,41 @@ body {
 }
 
 /* =============================
-   SECTIONS
+   FEATURES GRID
+============================= */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+}
+
+.feature-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.feature-card {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+}
+
+.feature-card-link:hover .feature-card {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.08);
+  border: 1px solid #2563eb;
+}
+
+.feature-card h3 {
+  margin-bottom: 12px;
+}
+
+/* =============================
+   SECTION LIGHT
 ============================= */
 .section {
   margin-bottom: 90px;
@@ -152,117 +186,6 @@ body {
   border-radius: 28px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 20px 60px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease;
-}
-
-.section-light:hover {
-  transform: translateY(-4px);
-}
-
-/* =============================
-   FEATURES GRID
-============================= */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 35px;
-}
-
-.feature-card {
-  background: white;
-  padding: 40px;
-  border-radius: 24px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 25px 70px rgba(0,0,0,0.08);
-}
-
-.feature-card h3 {
-  margin-bottom: 12px;
-}
-
-/* =============================
-   CALCULATOR GRID
-============================= */
-.calc-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-}
-
-/* =============================
-   INPUTS
-============================= */
-input, select {
-  width: 100%;
-  padding: 14px;
-  margin-top: 6px;
-  margin-bottom: 22px;
-  border-radius: 14px;
-  border: 1px solid #cbd5e1;
-  font-size: 14px;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border: 1px solid #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-/* =============================
-   RESULT BOXES
-============================= */
-.result-box {
-  padding: 20px;
-  border-radius: 18px;
-  margin-bottom: 20px;
-  font-weight: 600;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.6s ease;
-}
-
-.result-box.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.success {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.warning {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-.info {
-  background: #dbeafe;
-  color: #1e3a8a;
-}
-
-/* =============================
-   TABLE
-============================= */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-td {
-  padding: 12px 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.right {
-  text-align: right;
 }
 
 /* =============================
