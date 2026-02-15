@@ -145,3 +145,33 @@ button:hover {
   opacity: 1;
   transform: translateY(0);
 }
+/* Feature Grid */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.feature-box {
+  background: #1f2937;
+  padding: 25px;
+  border-radius: 14px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-4px);
+  background: #242f3f;
+}
+
+.feature-box h3 {
+  margin-bottom: 10px;
+}
+
+.feature-box p {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
