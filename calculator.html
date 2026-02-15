@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator | Student Tax Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="index.html" class="brand">Student Tax Studio</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="calculator.html" class="active">Calculator</a>
+    <a href="guide.html">Learn</a>
+    <a href="terms.html">Glossary</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="hero fade-in">
+    <h1>2025 Federal Tax Estimator</h1>
+    <p>Uses 2025 IRS inflation-adjusted brackets and standard deductions.</p>
+  </div>
+
+  <div class="calc-grid">
+
+    <!-- INPUT SIDE -->
+    <div class="section-light fade-in">
+
+      <h2>Your Information</h2>
+
+      <label>Filing Status</label>
+      <select id="status">
+        <option value="single">Single</option>
+        <option value="married">Married Filing Jointly</option>
+        <option value="hoh">Head of Household</option>
+      </select>
+
+      <label>State</label>
+      <select id="state">
+        <option value="none">No Income Tax State</option>
+        <option value="tax">State Has Income Tax</option>
+      </select>
+
+      <label>W-2 Income ($)</label>
+      <input type="number" id="income" placeholder="0">
+
+      <label>Federal Tax Withheld ($)</label>
+      <input type="number" id="withheld" placeholder="0">
+
+      <label>Self-Employment Income ($)</label>
+      <input type="number" id="self" placeholder="0">
+
+      <div style="margin-top:20px;">
+        <div style="font-size:14px; margin-bottom:6px;">Completion Progress</div>
+        <div style="background:#e2e8f0; height:8px; border-radius:10px;">
+          <div id="progressBar" style="height:8px; width:0%; background:#2563eb; border-radius:10px; transition:width 0.4s;"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RESULT SIDE -->
+    <div class="section-light fade-in">
+
+      <h2>Estimated Outcome</h2>
+
+      <div id="resultCard" class="result-box info">
+        Enter income to begin calculation.
+      </div>
+
+      <div id="refundAmount" style="font-size:42px; font-weight:700; margin:20px 0;"></div>
+
+      <div id="stateNotice" style="margin-bottom:15px; font-size:14px;"></div>
+
+      <button id="toggleBreakdown" class="secondary-btn">
+        View Detailed Breakdown
+      </button>
+
+      <div id="breakdownPanel" style="display:none; margin-top:25px;">
+        <table>
+          <tr><td>Standard Deduction</td><td class="right" id="deductionRow">$0</td></tr>
+          <tr><td>Taxable Income</td><td class="right" id="taxableRow">$0</td></tr>
+          <tr><td>Federal Income Tax</td><td class="right" id="taxRow">$0</td></tr>
+          <tr><td>Self-Employment Tax</td><td class="right" id="seTaxRow">$0</td></tr>
+          <tr><td>Total Withholding</td><td class="right" id="withholdingRow">$0</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  Educational tool only. Federal estimates only. Not tax advice.
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
 
