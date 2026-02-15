@@ -1,108 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Student Tax Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Student Tax Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-<div class="navbar">
-  <a href="index.html" class="brand">Student Tax Studio</a>
-  <div class="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <a href="calculator.html">Calculator</a>
-    <a href="guide.html">Learn</a>
-    <a href="terms.html">Glossary</a>
-    <a href="about.html">About</a>
-  </div>
-</div>
+<body>
 
 <div class="container">
 
-  <!-- HERO -->
-  <div class="hero fade-in">
-    <h1>Federal Filing Clarity for College Students</h1>
-    <p>
-      Student Tax Studio helps you understand whether you need to file,
-      how federal taxes are calculated, and what your refund or balance
-      might look like — all in a clean, modern interface.
-    </p>
+<!-- ===============================
+     HERO SECTION
+================================ -->
 
-    <div class="hero-buttons">
-      <a href="calculator.html" class="primary-btn">Start Calculator</a>
-      <a href="guide.html" class="secondary-btn">Learn How Filing Works</a>
+<div class="card fade-in">
+
+  <h2>Federal Filing Clarity for College Students</h2>
+
+  <p style="margin-bottom:20px; color:#9ca3af;">
+    Student Tax Studio helps you understand whether you need to file,
+    how federal taxes are calculated, and what your refund or balance
+    might look like — all in a clean, modern interface.
+  </p>
+
+  <button onclick="location.href='calculator.html'">
+    Start Calculator
+  </button>
+
+</div>
+
+<!-- ===============================
+     FEATURE CARDS
+================================ -->
+
+<div class="card fade-in">
+
+  <h2>Why Use Student Tax Studio?</h2>
+
+  <div class="form-grid">
+
+    <div class="card" style="background:#1f2937;">
+      <h3>Smart Filing Logic</h3>
+      <p style="color:#9ca3af;">
+        Evaluates income thresholds, withholding, and self-employment
+        rules to determine whether filing is likely required.
+      </p>
     </div>
-  </div>
 
-  <!-- FEATURES -->
-  <div class="section fade-in">
-    <div class="features">
-
-      <a href="calculator.html" class="feature-card-link">
-        <div class="feature-card">
-          <h3>Smart Filing Logic</h3>
-          <p>
-            Evaluates income thresholds, withholding, and self-employment rules
-            to determine whether filing is likely required.
-          </p>
-        </div>
-      </a>
-
-      <a href="calculator.html" class="feature-card-link">
-        <div class="feature-card">
-          <h3>Clear Financial Breakdown</h3>
-          <p>
-            Structured income, deduction, and bracket analysis displayed
-            in a transparent format.
-          </p>
-        </div>
-      </a>
-
-      <a href="terms.html" class="feature-card-link">
-        <div class="feature-card">
-          <h3>Plain-Language Explanations</h3>
-          <p>
-            Learn what key terms mean without needing a background
-            in accounting or tax law.
-          </p>
-        </div>
-      </a>
-
+    <div class="card" style="background:#1f2937;">
+      <h3>Clear Financial Breakdown</h3>
+      <p style="color:#9ca3af;">
+        Structured income, deduction, and bracket analysis displayed
+        in a transparent, professional dashboard.
+      </p>
     </div>
-  </div>
 
-  <!-- FEDERAL SCOPE -->
-  <div class="section section-light fade-in">
-    <h2>Federal Scope</h2>
-    <p>
-      This platform estimates federal income tax only. State filing
-      requirements vary and are not calculated here.
-    </p>
+    <div class="card" style="background:#1f2937;">
+      <h3>Plain-Language Explanations</h3>
+      <p style="color:#9ca3af;">
+        Understand standard deductions, tax brackets,
+        and withholding without needing an accounting background.
+      </p>
+    </div>
+
   </div>
 
 </div>
 
-<footer>
-  Educational tool only. Not tax advice.
-</footer>
+<!-- ===============================
+     FEDERAL NOTICE
+================================ -->
+
+<div class="card fade-in">
+
+  <h3>Federal Scope</h3>
+
+  <p style="color:#9ca3af;">
+    This platform estimates federal income tax only.
+    State filing requirements vary and are not calculated here.
+  </p>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  const faders = document.querySelectorAll(".fade-in");
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  });
-
-  faders.forEach(el => observer.observe(el));
-});
-</script>
-
 </body>
 </html>
