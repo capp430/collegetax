@@ -1,4 +1,6 @@
-/* ===== GLOBAL RESET ===== */
+/* =============================
+   GLOBAL RESET
+============================= */
 * {
   margin: 0;
   padding: 0;
@@ -7,33 +9,41 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f8fafc;
+  background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 40%, #f0fdf4 100%);
   color: #0f172a;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
-/* ===== NAVIGATION ===== */
+/* =============================
+   NAVIGATION
+============================= */
 .navbar {
-  background: white;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid #e2e8f0;
-  padding: 18px 40px;
+  padding: 18px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.nav-title {
+.brand {
   font-weight: 700;
-  font-size: 20px;
-  color: #0f172a;
+  font-size: 22px;
   text-decoration: none;
+  color: #0f172a;
 }
 
 .nav-links a {
-  margin-left: 25px;
+  margin-left: 28px;
   text-decoration: none;
   color: #475569;
   font-weight: 500;
+  position: relative;
   transition: color 0.2s ease;
 }
 
@@ -41,62 +51,147 @@ body {
   color: #2563eb;
 }
 
-/* ===== CONTAINER ===== */
-.container {
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 20px;
+.nav-links a.active {
+  color: #2563eb;
 }
 
-/* ===== HERO SECTION ===== */
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: #2563eb;
+}
+
+/* =============================
+   CONTAINER
+============================= */
+.container {
+  max-width: 1150px;
+  margin: 90px auto;
+  padding: 0 30px;
+}
+
+/* =============================
+   HERO SECTION
+============================= */
 .hero {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .hero h1 {
-  font-size: 40px;
-  margin-bottom: 15px;
+  font-size: 52px;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  font-size: 18px;
+  font-size: 20px;
   color: #475569;
-  max-width: 600px;
-  margin: 0 auto 30px;
+  max-width: 700px;
+  margin: 0 auto 35px;
 }
 
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* =============================
+   BUTTONS
+============================= */
 .primary-btn {
   background: #2563eb;
   color: white;
-  padding: 14px 26px;
-  border-radius: 12px;
+  padding: 14px 30px;
+  border-radius: 14px;
   text-decoration: none;
   font-weight: 600;
-  display: inline-block;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .primary-btn:hover {
   background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
-/* ===== CARDS ===== */
-.card {
+.secondary-btn {
   background: white;
-  padding: 30px;
-  border-radius: 18px;
-  border: 1px solid #e2e8f0;
-  margin-bottom: 30px;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  padding: 14px 30px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
-/* ===== INPUTS ===== */
+.secondary-btn:hover {
+  background: #f1f5f9;
+}
+
+/* =============================
+   SECTIONS
+============================= */
+.section {
+  margin-bottom: 90px;
+}
+
+.section-light {
+  background: #ffffff;
+  padding: 60px 40px;
+  border-radius: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+/* =============================
+   FEATURE GRID
+============================= */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+}
+
+.feature-card h3 {
+  margin-bottom: 12px;
+}
+
+/* =============================
+   CALCULATOR LAYOUT
+============================= */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
 input, select {
   width: 100%;
   padding: 12px;
   margin-top: 6px;
   margin-bottom: 18px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid #cbd5e1;
   font-size: 14px;
 }
@@ -105,21 +200,25 @@ button {
   background: #2563eb;
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 10px;
+  padding: 14px 22px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 button:hover {
   background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
-/* ===== RESULTS ===== */
+/* =============================
+   RESULT BOXES
+============================= */
 .result-box {
-  padding: 16px;
-  border-radius: 12px;
-  margin-top: 20px;
+  padding: 18px;
+  border-radius: 14px;
+  margin-bottom: 20px;
   font-weight: 600;
 }
 
@@ -138,11 +237,13 @@ button:hover {
   color: #1e3a8a;
 }
 
-/* ===== TABLE ===== */
+/* =============================
+   TABLE
+============================= */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 td {
@@ -154,11 +255,13 @@ td {
   text-align: right;
 }
 
-/* ===== FOOTER ===== */
+/* =============================
+   FOOTER
+============================= */
 footer {
-  margin-top: 60px;
+  margin-top: 80px;
   text-align: center;
   font-size: 13px;
   color: #64748b;
+  padding-bottom: 40px;
 }
-
