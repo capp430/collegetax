@@ -1,5 +1,5 @@
 /* =========================
-   GLOBAL
+   RESET
 ========================= */
 
 * {
@@ -7,6 +7,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* =========================
+   BODY
+========================= */
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -25,12 +29,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
-  z-index: 100;
   border-bottom: 1px solid rgba(0,0,0,0.05);
+  z-index: 100;
 }
 
 .nav-logo {
@@ -51,7 +55,7 @@ body {
 }
 
 /* =========================
-   LAYOUT
+   CONTAINER
 ========================= */
 
 .container {
@@ -60,56 +64,37 @@ body {
   padding: 0 20px;
 }
 
+/* =========================
+   CARD
+========================= */
+
 .card {
   background: white;
   border-radius: 20px;
-  padding: 40px;
-  margin-bottom: 40px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
+  padding: 45px;
+  margin-bottom: 45px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.12);
 }
 
 /* =========================
-   GRID
+   HERO
 ========================= */
 
-.form-grid,
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  margin-top: 25px;
+.hero h1 {
+  font-size: 28px;
+  margin-bottom: 15px;
 }
 
-/* =========================
-   INPUTS
-========================= */
-
-label {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  display: block;
+.hero p {
+  margin-bottom: 25px;
   color: #555;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #d0d5dd;
-  background: #f9fafb;
-  font-size: 14px;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border-color: #4c6ef5;
-  box-shadow: 0 0 0 3px rgba(76,110,245,0.15);
+  line-height: 1.6;
 }
 
 /* =========================
@@ -117,46 +102,70 @@ input:focus, select:focus {
 ========================= */
 
 button {
-  padding: 12px 22px;
+  padding: 12px 24px;
   border-radius: 30px;
   border: none;
   background: linear-gradient(90deg, #4c6ef5, #6c8eff);
   color: white;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 20px;
+  transition: 0.2s ease;
 }
 
 button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  opacity: 0.95;
 }
 
 /* =========================
-   RESULT
+   FEATURES GRID
 ========================= */
 
-.refund-amount {
-  font-size: 44px;
-  font-weight: 700;
-  margin: 20px 0;
-}
-
-.breakdown {
+.feature-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 15px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
 }
 
-.breakdown div {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+.feature-box {
+  background: #f9fbff;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #e3e8f5;
+  transition: 0.2s ease;
 }
 
-.divider {
-  height: 1px;
-  background: #eee;
-  margin: 30px 0;
+.feature-box:hover {
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transform: translateY(-4px);
+}
+
+.feature-box h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.feature-box p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* =========================
+   FEDERAL SCOPE
+========================= */
+
+.scope-box {
+  background: #f1f5ff;
+  border: 1px solid #dbe4ff;
+  border-radius: 16px;
+  padding: 25px;
+}
+
+.scope-box h3 {
+  margin-bottom: 10px;
 }
 
 /* =========================
@@ -165,7 +174,7 @@ button:hover {
 
 .fade-in {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(25px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
