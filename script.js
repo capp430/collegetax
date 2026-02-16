@@ -1,90 +1,44 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("input", calculate);
 
-  const incomeInput = document.getElementById("w2Income");
-  if (!incomeInput) return;
+function calculate() {
+  const status = document.getElementById("status").value;
+  const income = Number(document.getElementById("income").value);
+  const withheld = Number(document.getElementById("withheld").value);
+  const selfIncome = Number(document.getElementById("selfIncome").value);
 
-  const filingStatus = document.getElementById("filingStatus");
-  const withholding = document.getElementById("withholding");
-  const selfEmployment = document.getElementById("selfEmployment");
+  const deduction = status === "single" ? 14600 : 21900;
 
-  const brackets = {
-    single: [
-      [11925, 0.10],
-      [48475, 0.12],
-      [103350, 0.22],
-      [197300, 0.24],
-      [250525, 0.32],
-      [626350, 0.35],
-      [Infinity, 0.37]
-    ],
-    married: [
-      [23850, 0.10],
-      [96950, 0.12],
-      [206700, 0.22],
-      [394600, 0.24],
-      [501050, 0.32],
-      [751600, 0.35],
-      [Infinity, 0.37]
-    ],
-    head: [
-      [17000, 0.10],
-      [64850, 0.12],
-      [103350, 0.22],
-      [197300, 0.24],
-      [250500, 0.32],
-      [626350, 0.35],
-      [Infinity, 0.37]
-    ]
-  };
+  const taxable = Math.max(0, income - deduction);
 
-  const standardDeduction = {
-    single: 15000,
-    married: 30000,
-    head: 22500
-  };
+  const brackets = [
+    { limit: 11000, rate: 0.10 },
+    { limit: 44725, rate: 0.12 },
+    { limit: 95375, rate: 0.22 }
+  ];
 
-  function calculateTax() {
+  let tax = 0;
+  let remaining = taxable;
+  let previousLimit = 0;
 
-    let income = parseFloat(incomeInput.value) || 0;
-    let withheld = parseFloat(withholding.value) || 0;
-    let selfEmp = parseFloat(selfEmployment.value) || 0;
-    let status = filingStatus.value;
-
-    let deduction = standardDeduction[status];
-    let taxable = Math.max(0, income - deduction);
-
-    let tax = 0;
-    let previousLimit = 0;
-
-    for (let bracket of brackets[status]) {
-      let [limit, rate] = bracket;
-
-      if (taxable > previousLimit) {
-        let taxableAtThisRate = Math.min(taxable, limit) - previousLimit;
-        tax += taxableAtThisRate * rate;
-        previousLimit = limit;
-      }
-    }
-
-    let seTax = selfEmp * 0.153;
-    let totalTax = tax + seTax;
-    let net = withheld - totalTax;
-
-    document.getElementById("refundAmount").innerText =
-      net >= 0 ? "Refund: $" + net.toFixed(2)
-               : "Amount Owed: $" + Math.abs(net).toFixed(2);
-
-    document.getElementById("standardDeduction").innerText = "$" + deduction.toLocaleString();
-    document.getElementById("taxableIncome").innerText = "$" + taxable.toLocaleString();
-    document.getElementById("federalTax").innerText = "$" + tax.toFixed(2);
-    document.getElementById("seTax").innerText = "$" + seTax.toFixed(2);
-    document.getElementById("withholdingTotal").innerText = "$" + withheld.toLocaleString();
+  for (let bracket of brackets) {
+    if (remaining <= 0) break;
+    const amount = Math.min(remaining, bracket.limit - previousLimit);
+    tax += amount * bracket.rate;
+    remaining -= amount;
+    previousLimit = bracket.limit;
   }
 
-  filingStatus.addEventListener("change", calculateTax);
-  incomeInput.addEventListener("input", calculateTax);
-  withholding.addEventListener("input", calculateTax);
-  selfEmployment.addEventListener("input", calculateTax);
+  const seTax = selfIncome * 0.153;
+  const totalTax = tax + seTax;
+  const refund = withheld - totalTax;
 
-  calculateTax();
-});
+  document.getElementById("resultText").innerHTML =
+    refund >= 0 ? `<h3>Refund: $${refund.toFixed(2)}</h3>` :
+    `<h3>Amount Owed: $${Math.abs(refund).toFixed(2)}</h3>`;
+
+  document.getElementById("deduction").innerText = "$" + deduction.toLocaleString();
+  document.getElementById("taxable").innerText = "$" + taxable.toLocaleString();
+  document.getElementById("federalTax").innerText = "$" + tax.toFixed(2);
+  document.getElementById("seTax").innerText = "$" + seTax.toFixed(2);
+  document.getElementById("withholdingTotal").innerText = "$" + withheld.toFixed(2);
+}
