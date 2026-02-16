@@ -1,89 +1,51 @@
-function formatMoney(num) {
-  return "$" + num.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const w2 = document.getElementById("w2");
+const self = document.getElementById("self");
+const withheld = document.getElementById("withheld");
+const status = document.getElementById("status");
+const dependent = document.getElementById("dependent");
+
+function format(num){
+  return "$" + num.toFixed(2);
 }
 
-function calculateTax(income, brackets) {
-  let tax = 0;
-  let remaining = income;
+function calculate(){
 
-  for (let i = 0; i < brackets.length; i++) {
-    const bracket = brackets[i];
+  const w2Income = Number(w2.value) || 0;
+  const selfIncome = Number(self.value) || 0;
+  const withheldAmount = Number(withheld.value) || 0;
 
-    if (remaining > bracket.limit) {
-      tax += bracket.limit * bracket.rate;
-      remaining -= bracket.limit;
-    } else {
-      tax += remaining * bracket.rate;
-      break;
-    }
+  let deduction = 14600; // 2025 single est
+
+  if(status.value === "married") deduction = 29200;
+  if(status.value === "hoh") deduction = 21900;
+  if(dependent.value === "yes") deduction = 1300;
+
+  const totalIncome = w2Income + selfIncome;
+  const taxableIncome = Math.max(totalIncome - deduction, 0);
+
+  let federalTax = 0;
+
+  if(taxableIncome <= 11600){
+    federalTax = taxableIncome * 0.10;
+  } else if(taxableIncome <= 47150){
+    federalTax = 1160 + (taxableIncome - 11600) * 0.12;
+  } else {
+    federalTax = 5426 + (taxableIncome - 47150) * 0.22;
   }
-
-  return tax;
-}
-
-function runCalculator() {
-
-  const status = document.getElementById("status").value;
-  const dependent = document.getElementById("dependent").value;
-  const w2 = Number(document.getElementById("w2").value) || 0;
-  const selfIncome = Number(document.getElementById("self").value) || 0;
-  const withheld = Number(document.getElementById("withheld").value) || 0;
-
-  const totalIncome = w2 + selfIncome;
-
-  let standardDeduction = 0;
-
-  if (status === "single") standardDeduction = 14600;
-  if (status === "head") standardDeduction = 21900;
-
-  if (dependent === "yes") {
-    standardDeduction = Math.min(totalIncome + 400, 14600);
-  }
-
-  const taxableIncome = Math.max(0, totalIncome - standardDeduction);
-
-  const brackets = [
-    { limit: 11000, rate: 0.10 },
-    { limit: 33725, rate: 0.12 },
-    { limit: 50650, rate: 0.22 },
-    { limit: 86725, rate: 0.24 }
-  ];
-
-  const federalTax = calculateTax(taxableIncome, brackets);
 
   const seTax = selfIncome * 0.153;
 
-  const totalTax = federalTax + seTax;
+  const refund = withheldAmount - (federalTax + seTax);
 
-  const refundOrOwed = withheld - totalTax;
-
-  document.getElementById("deduction").innerText = formatMoney(standardDeduction);
-  document.getElementById("totalIncome").innerText = formatMoney(totalIncome);
-  document.getElementById("taxable").innerText = formatMoney(taxableIncome);
-  document.getElementById("federalTax").innerText = formatMoney(federalTax);
-  document.getElementById("seTax").innerText = formatMoney(seTax);
-  document.getElementById("totalWithheld").innerText = formatMoney(withheld);
-  document.getElementById("finalAmount").innerText = formatMoney(Math.abs(refundOrOwed));
-
-  const message = document.getElementById("resultMessage");
-
-  if (totalIncome === 0) {
-    message.innerText = "Enter income to see results";
-    return;
-  }
-
-  if (refundOrOwed > 0) {
-    message.innerText = "Estimated Refund";
-    message.className = "refund";
-  } else if (refundOrOwed < 0) {
-    message.innerText = "Estimated Amount Owed";
-    message.className = "owed";
-  } else {
-    message.innerText = "No Balance Due";
-    message.className = "";
-  }
+  document.getElementById("deduction").textContent = format(deduction);
+  document.getElementById("total").textContent = format(totalIncome);
+  document.getElementById("taxable").textContent = format(taxableIncome);
+  document.getElementById("federal").textContent = format(federalTax);
+  document.getElementById("se").textContent = format(seTax);
+  document.getElementById("withholding").textContent = format(withheldAmount);
+  document.getElementById("refund").textContent = format(refund);
 }
 
-document.querySelectorAll("input, select").forEach(el => {
-  el.addEventListener("input", runCalculator);
+[w2,self,withheld,status,dependent].forEach(el => {
+  el.addEventListener("input", calculate);
 });
