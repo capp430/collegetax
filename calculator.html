@@ -1,71 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculator | Student Tax Studio</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+  <title>Calculator | Student Tax Studio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-logo">Student Tax Studio</div>
+<div class="navbar">
+  <div>Student Tax Studio</div>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="calculator.html">Calculator</a>
     <a href="glossary.html">Glossary</a>
     <a href="about.html">About</a>
   </div>
-</nav>
-
-<div class="page-container">
-
-<section class="card">
-<h2>Your Information</h2>
-
-<div class="form-grid">
-<div>
-<label>Filing Status</label>
-<select id="status">
-<option value="single">Single</option>
-<option value="hoh">Head of Household</option>
-</select>
 </div>
 
-<div>
-<label>W-2 Income ($)</label>
-<input type="number" id="income" value="0">
-</div>
+<div class="container">
 
-<div>
-<label>Federal Tax Withheld ($)</label>
-<input type="number" id="withheld" value="0">
-</div>
+  <div class="card">
+    <h1>Federal Tax Calculator (2025 Tax Year)</h1>
+    <p>This calculator uses 2025 federal income tax brackets and standard deductions.</p>
 
-<div>
-<label>Self-Employment Income ($)</label>
-<input type="number" id="selfIncome" value="0">
-</div>
-</div>
-</section>
+    <label>W-2 Income ($)</label>
+    <input type="number" id="income">
 
-<section class="card result-card">
-<h2>Estimated Outcome</h2>
+    <label>Federal Tax Withheld ($)</label>
+    <input type="number" id="withheld">
 
-<div class="result-main" id="resultText"></div>
+    <button class="calculate-btn" onclick="calculate()">Calculate</button>
 
-<div class="divider"></div>
+    <div class="divider"></div>
 
-<div class="breakdown-grid">
-<div class="breakdown-row"><span>Standard Deduction</span><span id="deduction"></span></div>
-<div class="breakdown-row"><span>Taxable Income</span><span id="taxable"></span></div>
-<div class="breakdown-row"><span>Federal Income Tax</span><span id="federalTax"></span></div>
-<div class="breakdown-row"><span>Self-Employment Tax</span><span id="seTax"></span></div>
-<div class="breakdown-row"><span>Total Withholding</span><span id="withholdingTotal"></span></div>
-</div>
+    <div class="result-main" id="resultMain">Result will appear here</div>
 
-</section>
+    <div class="divider"></div>
+
+    <div id="breakdownSection">
+      <div class="breakdown-row"><span>Standard Deduction (2025)</span><span id="stdDeduction">$14,600</span></div>
+      <div class="breakdown-row"><span>Taxable Income</span><span id="taxableIncome">$0</span></div>
+      <div class="breakdown-row"><span>Federal Income Tax</span><span id="fedTax">$0</span></div>
+      <div class="breakdown-row"><span>Total Withholding</span><span id="withholding">$0</span></div>
+    </div>
+
+  </div>
 
 </div>
 
@@ -73,5 +51,6 @@
 Educational tool only. Not tax advice.
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
