@@ -1,52 +1,89 @@
-function calculate() {
+function formatMoney(num) {
+  return "$" + num.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
 
-  const status = document.getElementById("filingStatus").value;
+function calculateTax(income, brackets) {
+  let tax = 0;
+  let remaining = income;
+
+  for (let i = 0; i < brackets.length; i++) {
+    const bracket = brackets[i];
+
+    if (remaining > bracket.limit) {
+      tax += bracket.limit * bracket.rate;
+      remaining -= bracket.limit;
+    } else {
+      tax += remaining * bracket.rate;
+      break;
+    }
+  }
+
+  return tax;
+}
+
+function runCalculator() {
+
+  const status = document.getElementById("status").value;
   const dependent = document.getElementById("dependent").value;
-  const income = parseFloat(document.getElementById("income").value) || 0;
-  const selfIncome = parseFloat(document.getElementById("selfIncome").value) || 0;
-  const withheld = parseFloat(document.getElementById("withheld").value) || 0;
+  const w2 = Number(document.getElementById("w2").value) || 0;
+  const selfIncome = Number(document.getElementById("self").value) || 0;
+  const withheld = Number(document.getElementById("withheld").value) || 0;
 
-  const totalIncome = income + selfIncome;
+  const totalIncome = w2 + selfIncome;
 
-  let standardDeduction = status === "head" ? 21900 : 14600;
+  let standardDeduction = 0;
+
+  if (status === "single") standardDeduction = 14600;
+  if (status === "head") standardDeduction = 21900;
 
   if (dependent === "yes") {
-    standardDeduction = Math.min(standardDeduction, totalIncome + 450);
+    standardDeduction = Math.min(totalIncome + 400, 14600);
   }
 
-  let taxableIncome = Math.max(0, totalIncome - standardDeduction);
+  const taxableIncome = Math.max(0, totalIncome - standardDeduction);
 
-  let tax = 0;
+  const brackets = [
+    { limit: 11000, rate: 0.10 },
+    { limit: 33725, rate: 0.12 },
+    { limit: 50650, rate: 0.22 },
+    { limit: 86725, rate: 0.24 }
+  ];
 
-  if (taxableIncome <= 11600) {
-    tax = taxableIncome * 0.10;
-  } else if (taxableIncome <= 47150) {
-    tax = 11600 * 0.10 + (taxableIncome - 11600) * 0.12;
-  } else if (taxableIncome <= 100525) {
-    tax = 11600 * 0.10 +
-          (47150 - 11600) * 0.12 +
-          (taxableIncome - 47150) * 0.22;
+  const federalTax = calculateTax(taxableIncome, brackets);
+
+  const seTax = selfIncome * 0.153;
+
+  const totalTax = federalTax + seTax;
+
+  const refundOrOwed = withheld - totalTax;
+
+  document.getElementById("deduction").innerText = formatMoney(standardDeduction);
+  document.getElementById("totalIncome").innerText = formatMoney(totalIncome);
+  document.getElementById("taxable").innerText = formatMoney(taxableIncome);
+  document.getElementById("federalTax").innerText = formatMoney(federalTax);
+  document.getElementById("seTax").innerText = formatMoney(seTax);
+  document.getElementById("totalWithheld").innerText = formatMoney(withheld);
+  document.getElementById("finalAmount").innerText = formatMoney(Math.abs(refundOrOwed));
+
+  const message = document.getElementById("resultMessage");
+
+  if (totalIncome === 0) {
+    message.innerText = "Enter income to see results";
+    return;
+  }
+
+  if (refundOrOwed > 0) {
+    message.innerText = "Estimated Refund";
+    message.className = "refund";
+  } else if (refundOrOwed < 0) {
+    message.innerText = "Estimated Amount Owed";
+    message.className = "owed";
   } else {
-    tax = 11600 * 0.10 +
-          (47150 - 11600) * 0.12 +
-          (100525 - 47150) * 0.22 +
-          (taxableIncome - 100525) * 0.24;
+    message.innerText = "No Balance Due";
+    message.className = "";
   }
-
-  let seTax = selfIncome * 0.153;
-  let totalTax = tax + seTax;
-
-  let result = withheld - totalTax;
-
-  document.getElementById("resultMain").innerText =
-    result >= 0
-      ? "Estimated Refund: $" + result.toFixed(2)
-      : "Estimated Amount Owed: $" + Math.abs(result).toFixed(2);
-
-  document.getElementById("deductionDisplay").innerText = "$" + standardDeduction.toFixed(2);
-  document.getElementById("totalIncome").innerText = "$" + totalIncome.toFixed(2);
-  document.getElementById("taxableIncome").innerText = "$" + taxableIncome.toFixed(2);
-  document.getElementById("fedTax").innerText = "$" + tax.toFixed(2);
-  document.getElementById("seTax").innerText = "$" + seTax.toFixed(2);
-  document.getElementById("withholdingDisplay").innerText = "$" + withheld.toFixed(2);
 }
+
+document.querySelectorAll("input, select").forEach(el => {
+  el.addEventListener("input", runCalculator);
+});
