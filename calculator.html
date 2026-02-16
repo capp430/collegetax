@@ -7,7 +7,7 @@
 <body>
 
 <div class="navbar">
-  <div>Student Tax Studio</div>
+  <div class="nav-title">Student Tax Studio</div>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="calculator.html">Calculator</a>
@@ -18,38 +18,46 @@
 
 <div class="container">
 
-  <div class="card">
-    <h1>Federal Tax Calculator (2025 Tax Year)</h1>
-    <p>This calculator uses 2025 federal income tax brackets and standard deductions.</p>
+<div class="card">
+<h1>Federal Tax Calculator (2025 Tax Year)</h1>
 
-    <label>W-2 Income ($)</label>
-    <input type="number" id="income">
+<label>W-2 Income ($)</label>
+<input type="number" id="income" oninput="calculate()">
 
-    <label>Federal Tax Withheld ($)</label>
-    <input type="number" id="withheld">
+<label>Federal Tax Withheld ($)</label>
+<input type="number" id="withheld" oninput="calculate()">
 
-    <button class="calculate-btn" onclick="calculate()">Calculate</button>
+<div class="divider"></div>
 
-    <div class="divider"></div>
+<div class="result-main" id="resultMain">Enter income to see results</div>
 
-    <div class="result-main" id="resultMain">Result will appear here</div>
+<div class="divider"></div>
 
-    <div class="divider"></div>
+<div class="breakdown-row">
+<span>Standard Deduction (2025)</span>
+<span>$14,600</span>
+</div>
 
-    <div id="breakdownSection">
-      <div class="breakdown-row"><span>Standard Deduction (2025)</span><span id="stdDeduction">$14,600</span></div>
-      <div class="breakdown-row"><span>Taxable Income</span><span id="taxableIncome">$0</span></div>
-      <div class="breakdown-row"><span>Federal Income Tax</span><span id="fedTax">$0</span></div>
-      <div class="breakdown-row"><span>Total Withholding</span><span id="withholding">$0</span></div>
-    </div>
+<div class="breakdown-row">
+<span>Taxable Income</span>
+<span id="taxableIncome">$0</span>
+</div>
 
-  </div>
+<div class="breakdown-row">
+<span>Federal Income Tax</span>
+<span id="fedTax">$0</span>
+</div>
+
+<div class="breakdown-row">
+<span>Total Withholding</span>
+<span id="withholding">$0</span>
+</div>
 
 </div>
 
-<footer>
-Educational tool only. Not tax advice.
-</footer>
+</div>
+
+<footer>Educational tool only. Not tax advice.</footer>
 
 <script src="script.js"></script>
 </body>
