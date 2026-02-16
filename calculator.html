@@ -19,23 +19,53 @@
 <div class="container">
 
 <div class="card">
+
 <h1>Federal Tax Calculator (2025 Tax Year)</h1>
+<p style="margin-bottom:30px;">Estimates based on 2025 federal single-filer brackets and standard deduction.</p>
+
+<label>Filing Status</label>
+<select id="filingStatus" onchange="calculate()">
+  <option value="single">Single</option>
+  <option value="head">Head of Household</option>
+</select>
+
+<label>Are you claimed as a dependent?</label>
+<select id="dependent" onchange="calculate()">
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
+</select>
+
+<label>State</label>
+<select id="state">
+  <option>No Income Tax State</option>
+  <option>State With Income Tax</option>
+</select>
 
 <label>W-2 Income ($)</label>
 <input type="number" id="income" oninput="calculate()">
+
+<label>Self-Employment Income ($)</label>
+<input type="number" id="selfIncome" oninput="calculate()">
 
 <label>Federal Tax Withheld ($)</label>
 <input type="number" id="withheld" oninput="calculate()">
 
 <div class="divider"></div>
 
-<div class="result-main" id="resultMain">Enter income to see results</div>
+<div class="result-main" id="resultMain">
+Enter income to see results
+</div>
 
 <div class="divider"></div>
 
 <div class="breakdown-row">
 <span>Standard Deduction (2025)</span>
-<span>$14,600</span>
+<span id="deductionDisplay">$14,600</span>
+</div>
+
+<div class="breakdown-row">
+<span>Total Income</span>
+<span id="totalIncome">$0</span>
 </div>
 
 <div class="breakdown-row">
@@ -46,6 +76,11 @@
 <div class="breakdown-row">
 <span>Federal Income Tax</span>
 <span id="fedTax">$0</span>
+</div>
+
+<div class="breakdown-row">
+<span>Self-Employment Tax</span>
+<span id="seTax">$0</span>
 </div>
 
 <div class="breakdown-row">
