@@ -1,13 +1,14 @@
 document.addEventListener("input", calculate);
+document.addEventListener("DOMContentLoaded", calculate);
 
 function calculate() {
+
   const status = document.getElementById("status").value;
   const income = Number(document.getElementById("income").value);
   const withheld = Number(document.getElementById("withheld").value);
   const selfIncome = Number(document.getElementById("selfIncome").value);
 
   const deduction = status === "single" ? 14600 : 21900;
-
   const taxable = Math.max(0, income - deduction);
 
   const brackets = [
@@ -32,9 +33,9 @@ function calculate() {
   const totalTax = tax + seTax;
   const refund = withheld - totalTax;
 
-  document.getElementById("resultText").innerHTML =
-    refund >= 0 ? `<h3>Refund: $${refund.toFixed(2)}</h3>` :
-    `<h3>Amount Owed: $${Math.abs(refund).toFixed(2)}</h3>`;
+  document.getElementById("resultText").innerText =
+    refund >= 0 ? "Refund: $" + refund.toFixed(2)
+                : "Amount Owed: $" + Math.abs(refund).toFixed(2);
 
   document.getElementById("deduction").innerText = "$" + deduction.toLocaleString();
   document.getElementById("taxable").innerText = "$" + taxable.toLocaleString();
