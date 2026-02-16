@@ -1,83 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calculator - Student Tax Studio</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Calculator - Student Tax Studio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <nav class="navbar">
-    <div class="nav-logo">Student Tax Studio</div>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="calculator.html">Calculator</a>
-        <a href="guide.html">Learn</a>
-        <a href="terms.html">Glossary</a>
-        <a href="about.html">About</a>
-    </div>
+  <div class="nav-logo">Student Tax Studio</div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="calculator.html">Calculator</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="about.html">About</a>
+  </div>
 </nav>
 
 <div class="container">
 
-    <div class="card">
-        <h1>Your Information</h1>
-        <div class="input-grid">
-            <div>
-                <label>Filing Status</label>
-                <select id="filingStatus">
-                    <option value="single">Single</option>
-                    <option value="married">Married Filing Jointly</option>
-                    <option value="head">Head of Household</option>
-                </select>
-            </div>
+  <!-- INPUT SECTION -->
+  <div class="card">
+    <h1>Your Information</h1>
 
-            <div>
-                <label>W-2 Income ($)</label>
-                <input id="w2Income" type="number">
-            </div>
+    <div class="input-grid">
 
-            <div>
-                <label>Federal Tax Withheld ($)</label>
-                <input id="withholding" type="number">
-            </div>
+      <div>
+        <label>Filing Status</label>
+        <select id="filingStatus">
+          <option value="single">Single</option>
+          <option value="married">Married Filing Jointly</option>
+          <option value="head">Head of Household</option>
+        </select>
+      </div>
 
-            <div>
-                <label>Self-Employment Income ($)</label>
-                <input id="selfEmployment" type="number">
-            </div>
-        </div>
+      <div>
+        <label>W-2 Income ($)</label>
+        <input id="w2Income" type="number" placeholder="0">
+      </div>
+
+      <div>
+        <label>Federal Tax Withheld ($)</label>
+        <input id="withholding" type="number" placeholder="0">
+      </div>
+
+      <div>
+        <label>Self-Employment Income ($)</label>
+        <input id="selfEmployment" type="number" placeholder="0">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OUTCOME SECTION -->
+  <div class="card">
+
+    <h1>Estimated Outcome</h1>
+
+    <div id="refundAmount" class="result-amount"></div>
+
+    <div class="section-divider"></div>
+
+    <div class="breakdown-grid">
+
+      <div>Standard Deduction</div>
+      <div id="standardDeduction">$0</div>
+
+      <div>Taxable Income</div>
+      <div id="taxableIncome">$0</div>
+
+      <div>Federal Income Tax</div>
+      <div id="federalTax">$0</div>
+
+      <div>Self-Employment Tax</div>
+      <div id="seTax">$0</div>
+
+      <div>Total Withholding</div>
+      <div id="withholdingTotal">$0</div>
+
     </div>
 
-    <div class="card">
-        <h1>Estimated Outcome</h1>
-        <div id="refundAmount" class="result-amount"></div>
+    <div class="section-divider"></div>
 
-        <div class="section-divider"></div>
+    <p>
+      Filing may be required if your income exceeds the standard deduction,
+      or if you owe self-employment tax. This estimate reflects federal income tax only.
+    </p>
 
-        <div class="breakdown-grid">
-            <div>Standard Deduction</div>
-            <div id="standardDeduction"></div>
-
-            <div>Taxable Income</div>
-            <div id="taxableIncome"></div>
-
-            <div>Federal Income Tax</div>
-            <div id="federalTax"></div>
-
-            <div>Self-Employment Tax</div>
-            <div id="seTax"></div>
-
-            <div>Total Withholding</div>
-            <div id="withholdingTotal"></div>
-        </div>
-    </div>
+  </div>
 
 </div>
 
 <footer>
-    Educational tool only. Not tax advice.
+  Educational tool only. Not tax advice.
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
