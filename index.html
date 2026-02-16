@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Student Tax Studio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+    <title>Student Tax Studio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="navbar">
-  <div class="nav-logo">Student Tax Studio</div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="calculator.html">Calculator</a>
-    <a href="guide.html">Learn</a>
-    <a href="terms.html">Glossary</a>
-    <a href="about.html">About</a>
-  </div>
-</div>
+<nav class="navbar">
+    <div class="nav-logo">Student Tax Studio</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="guide.html">Learn</a>
+        <a href="terms.html">Glossary</a>
+        <a href="about.html">About</a>
+    </div>
+</nav>
 
 <div class="container">
 
-<div class="card fade-in">
-  <h2>Federal Filing Clarity for College Students</h2>
-  <p style="margin-top:15px;">
-    Understand whether you need to file, how federal taxes are calculated,
-    and what your refund or balance might look like.
-  </p>
-  <button onclick="location.href='calculator.html'">
-    Start Calculator
-  </button>
+    <div class="card">
+        <h1>Federal Filing Clarity for College Students</h1>
+        <p>Understand whether you need to file, how federal taxes are calculated, and what your refund or balance might look like.</p>
+        <a href="calculator.html"><button>Start Calculator</button></a>
+    </div>
+
+    <div class="card">
+        <h1>Why Use Student Tax Studio?</h1>
+        <div class="features">
+            <div class="feature-box" onclick="location.href='calculator.html'">
+                <h3>Smart Filing Logic</h3>
+                <p>Evaluates income thresholds and filing rules.</p>
+            </div>
+            <div class="feature-box" onclick="location.href='calculator.html'">
+                <h3>Clear Financial Breakdown</h3>
+                <p>Professional structured analysis of income and tax.</p>
+            </div>
+            <div class="feature-box" onclick="location.href='guide.html'">
+                <h3>Plain-Language Explanations</h3>
+                <p>Understand tax concepts without background knowledge.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h1>Federal Scope</h1>
+        <p>This platform estimates federal income tax only. State filing requirements vary and are not calculated here.</p>
+    </div>
+
 </div>
 
-<div class="card fade-in">
-  <h2>Why Use Student Tax Studio?</h2>
+<footer>
+    Educational tool only. Not tax advice.
+</footer>
 
-  <div class="feature-grid">
-    <div>
-      <h3>Smart Filing Logic</h3>
-      <p>Evaluates income thresholds and filing rules.</p>
-    </div>
-    <div>
-      <h3>Clear Financial Breakdown</h3>
-      <p>Professional structured analysis of income and tax.</p>
-    </div>
-    <div>
-      <h3>Plain-Language Explanations</h3>
-      <p>Understand key tax concepts without background knowledge.</p>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
