@@ -3,7 +3,9 @@
 <head>
 <title>Calculator | Student Tax Studio</title>
 <link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 
 <div class="navbar">
@@ -16,94 +18,117 @@
   </div>
 </div>
 
-
 <div class="container">
 
 <div class="card">
+
 <h1>Federal Tax Calculator (2025 Tax Year)</h1>
 
+<div class="calc-note">
+Using 2025 Federal Tax Brackets & Standard Deduction
+</div>
+
+<!-- Filing Status -->
 <label>Filing Status</label>
 <select id="filingStatus" onchange="calculate()">
-<option value="single">Single</option>
-<option value="head">Head of Household</option>
+  <option value="single">Single</option>
+  <option value="head">Head of Household</option>
 </select>
 
+<!-- Dependent -->
 <label>Are You Claimed as a Dependent?</label>
 <select id="dependent" onchange="calculate()">
-<option value="no">No</option>
-<option value="yes">Yes</option>
+  <option value="no">No</option>
+  <option value="yes">Yes</option>
 </select>
+<div class="input-note">
+Dependent status may reduce your standard deduction.
+</div>
 
+<!-- W2 Income -->
 <label>W-2 Income ($)</label>
-<input type="number" id="income" oninput="calculate()">
+<input type="number" id="income" placeholder="Enter wages" oninput="calculate()">
 
+<!-- Self Employment -->
 <label>Self-Employment Income ($)</label>
-<input type="number" id="selfIncome" oninput="calculate()">
+<input type="number" id="selfIncome" placeholder="Freelance / 1099 income" oninput="calculate()">
 
+<!-- Withholding -->
 <label>Federal Tax Withheld ($)</label>
-<input type="number" id="withheld" oninput="calculate()">
+<input type="number" id="withheld" placeholder="From W-2 Box 2" oninput="calculate()">
 
 <div class="divider"></div>
 
+<!-- MAIN RESULT -->
 <div class="result-main" id="resultMain">
-  Enter income to see results
+Enter income to see results
 </div>
 
 <div class="divider"></div>
 
+<!-- INCOME SECTION -->
 <h3 class="section-title">Income & Deduction Summary</h3>
 
 <div class="breakdown-group">
+
   <div class="breakdown-row">
     <span>Standard Deduction</span>
-    <span id="deductionDisplay">$0</span>
+    <span id="deductionDisplay">$0.00</span>
   </div>
 
   <div class="breakdown-row">
     <span>Total Income</span>
-    <span id="totalIncome">$0</span>
+    <span id="totalIncome">$0.00</span>
   </div>
 
   <div class="breakdown-row">
     <span>Taxable Income</span>
-    <span id="taxableIncome">$0</span>
+    <span id="taxableIncome">$0.00</span>
   </div>
+
 </div>
 
 <div class="divider"></div>
 
+<!-- TAX SECTION -->
 <h3 class="section-title">Tax Calculation</h3>
 
 <div class="breakdown-group">
+
   <div class="breakdown-row">
     <span>Federal Income Tax</span>
-    <span id="fedTax">$0</span>
+    <span id="fedTax">$0.00</span>
   </div>
 
   <div class="breakdown-row">
-    <span>Self-Employment Tax</span>
-    <span id="seTax">$0</span>
+    <span>Self-Employment Tax (15.3%)</span>
+    <span id="seTax">$0.00</span>
   </div>
+
 </div>
 
 <div class="divider"></div>
 
+<!-- FINAL SECTION -->
 <h3 class="section-title">Withholding & Final Estimate</h3>
 
 <div class="breakdown-group">
+
   <div class="breakdown-row">
     <span>Total Withholding</span>
-    <span id="withholdingDisplay">$0</span>
+    <span id="withholdingDisplay">$0.00</span>
   </div>
-</div>
-
 
 </div>
 
 </div>
+</div>
 
-<footer>Educational tool only. Not tax advice.</footer>
+<footer>
+Educational tool only. Not tax advice.
+</footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
