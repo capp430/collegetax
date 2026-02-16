@@ -1,8 +1,8 @@
-const w2 = document.getElementById("w2");
-const self = document.getElementById("self");
-const withheld = document.getElementById("withheld");
-const status = document.getElementById("status");
-const dependent = document.getElementById("dependent");
+const inputs = ["w2","self","withheld","status","dependent"];
+
+inputs.forEach(id => {
+  document.getElementById(id).addEventListener("input", calculate);
+});
 
 function format(num){
   return "$" + num.toFixed(2);
@@ -10,42 +10,37 @@ function format(num){
 
 function calculate(){
 
-  const w2Income = Number(w2.value) || 0;
-  const selfIncome = Number(self.value) || 0;
-  const withheldAmount = Number(withheld.value) || 0;
+  const w2 = Number(document.getElementById("w2").value) || 0;
+  const self = Number(document.getElementById("self").value) || 0;
+  const withheld = Number(document.getElementById("withheld").value) || 0;
+  const status = document.getElementById("status").value;
+  const dependent = document.getElementById("dependent").value;
 
-  let deduction = 14600; // 2025 single est
+  let deduction = 14600;
+  if(status === "married") deduction = 29200;
+  if(status === "hoh") deduction = 21900;
+  if(dependent === "yes") deduction = 1300;
 
-  if(status.value === "married") deduction = 29200;
-  if(status.value === "hoh") deduction = 21900;
-  if(dependent.value === "yes") deduction = 1300;
+  const totalIncome = w2 + self;
+  const taxable = Math.max(totalIncome - deduction, 0);
 
-  const totalIncome = w2Income + selfIncome;
-  const taxableIncome = Math.max(totalIncome - deduction, 0);
-
-  let federalTax = 0;
-
-  if(taxableIncome <= 11600){
-    federalTax = taxableIncome * 0.10;
-  } else if(taxableIncome <= 47150){
-    federalTax = 1160 + (taxableIncome - 11600) * 0.12;
+  let federal = 0;
+  if(taxable <= 11600){
+    federal = taxable * 0.10;
+  } else if(taxable <= 47150){
+    federal = 1160 + (taxable - 11600) * 0.12;
   } else {
-    federalTax = 5426 + (taxableIncome - 47150) * 0.22;
+    federal = 5426 + (taxable - 47150) * 0.22;
   }
 
-  const seTax = selfIncome * 0.153;
-
-  const refund = withheldAmount - (federalTax + seTax);
+  const seTax = self * 0.153;
+  const refund = withheld - (federal + seTax);
 
   document.getElementById("deduction").textContent = format(deduction);
   document.getElementById("total").textContent = format(totalIncome);
-  document.getElementById("taxable").textContent = format(taxableIncome);
-  document.getElementById("federal").textContent = format(federalTax);
+  document.getElementById("taxable").textContent = format(taxable);
+  document.getElementById("federal").textContent = format(federal);
   document.getElementById("se").textContent = format(seTax);
-  document.getElementById("withholding").textContent = format(withheldAmount);
+  document.getElementById("withholding").textContent = format(withheld);
   document.getElementById("refund").textContent = format(refund);
 }
-
-[w2,self,withheld,status,dependent].forEach(el => {
-  el.addEventListener("input", calculate);
-});
