@@ -1,66 +1,283 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculator | Student Tax Studio</title>
 <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<style>
+/* Page Specific Enhancements */
 
-<div class="navbar">
-<div class="nav-title">Student Tax Studio</div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="calculator.html">Calculator</a>
-<a href="glossary.html">Glossary</a>
-<a href="about.html">About</a>
-</div>
-</div>
+.calc-header {
+    margin-bottom: 40px;
+}
+
+.tax-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #4f7cff, #6c63ff);
+    color: white;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.form-grid {
+    display: grid;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4f7cff;
+    box-shadow: 0 0 0 3px rgba(79,124,255,0.15);
+}
+
+.results-card {
+    background: rgba(255,255,255,0.7);
+    padding: 35px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.result-main {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.refund { color: #16a34a; }
+.owed { color: #dc2626; }
+
+.section-divider {
+    margin: 30px 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.breakdown-row:last-child {
+    border-bottom: none;
+}
+
+.breakdown-label {
+    font-weight: 500;
+}
+
+.breakdown-value {
+    font-weight: 600;
+}
+
+.note {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
 
 <div class="container">
 
-<div class="card">
-<h1>Federal Tax Calculator (2025 Tax Year)</h1>
+<div class="calc-header">
+    <h1>Federal Tax Calculator</h1>
+    <div class="tax-badge">Using 2025 Federal Tax Brackets & Standard Deduction</div>
+</div>
 
-<label>Filing Status</label>
-<select id="filingStatus" onchange="calculate()">
-<option value="single">Single</option>
-<option value="head">Head of Household</option>
-</select>
+<div class="form-grid">
 
-<label>Are You Claimed as a Dependent?</label>
-<select id="dependent" onchange="calculate()">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
+    <div>
+        <label>Filing Status</label>
+        <select id="status">
+            <option value="single">Single</option>
+            <option value="married">Married Filing Jointly</option>
+            <option value="head">Head of Household</option>
+        </select>
+    </div>
 
-<label>W-2 Income ($)</label>
-<input type="number" id="income" oninput="calculate()">
+    <div>
+        <label>Are You Claimed as a Dependent?</label>
+        <select id="dependent">
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select>
+        <div class="note">Dependent status may change your standard deduction.</div>
+    </div>
 
-<label>Self-Employment Income ($)</label>
-<input type="number" id="selfIncome" oninput="calculate()">
+    <div>
+        <label>W-2 Income ($)</label>
+        <input type="number" id="w2" placeholder="Enter wages">
+    </div>
 
-<label>Federal Tax Withheld ($)</label>
-<input type="number" id="withheld" oninput="calculate()">
+    <div>
+        <label>Self-Employment Income ($)</label>
+        <input type="number" id="self">
+    </div>
 
-<div class="divider"></div>
+    <div>
+        <label>Federal Tax Withheld ($)</label>
+        <input type="number" id="withheld">
+    </div>
 
-<div class="result-main" id="resultMain">Enter income to see results</div>
+</div>
 
-<div class="divider"></div>
+<div class="results-card">
 
-<div class="breakdown-row"><span>Standard Deduction</span><span id="deductionDisplay">$0</span></div>
-<div class="breakdown-row"><span>Total Income</span><span id="totalIncome">$0</span></div>
-<div class="breakdown-row"><span>Taxable Income</span><span id="taxableIncome">$0</span></div>
-<div class="breakdown-row"><span>Federal Income Tax</span><span id="fedTax">$0</span></div>
-<div class="breakdown-row"><span>Self-Employment Tax</span><span id="seTax">$0</span></div>
-<div class="breakdown-row"><span>Total Withholding</span><span id="withholdingDisplay">$0</span></div>
+    <h2>Estimated Outcome</h2>
+
+    <div id="mainResult" class="result-main">
+        Enter income to see results
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h3>Income & Deduction Summary</h3>
+
+    <div class="breakdown-row">
+        <span class="breakdown-label">Standard Deduction</span>
+        <span class="breakdown-value" id="std">$0</span>
+    </div>
+
+    <div class="breakdown-row">
+        <span class="breakdown-label">Total Income</span>
+        <span class="breakdown-value" id="totalIncome">$0</span>
+    </div>
+
+    <div class="breakdown-row">
+        <span class="breakdown-label">Taxable Income</span>
+        <span class="breakdown-value" id="taxable">$0</span>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h3>Tax Calculation</h3>
+
+    <div class="breakdown-row">
+        <span class="breakdown-label">Federal Income Tax</span>
+        <span class="breakdown-value" id="federalTax">$0</span>
+    </div>
+
+    <div class="breakdown-row">
+        <span class="breakdown-label">Self-Employment Tax</span>
+        <span class="breakdown-value" id="seTax">$0</span>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="breakdown-row">
+        <span class="breakdown-label">Total Withholding</span>
+        <span class="breakdown-value" id="withholding">$0</span>
+    </div>
 
 </div>
 
 </div>
 
-<footer>Educational tool only. Not tax advice.</footer>
+<script>
+function formatMoney(num){
+    return "$" + num.toLocaleString(undefined, {minimumFractionDigits: 2});
+}
 
-<script src="script.js"></script>
+function calculateTaxableIncome(income, deduction){
+    return Math.max(income - deduction, 0);
+}
+
+function federalTax2025(taxable){
+    let tax = 0;
+
+    const brackets = [
+        [11600, 0.10],
+        [47150, 0.12],
+        [100525, 0.22],
+        [191950, 0.24],
+        [243725, 0.32],
+        [609350, 0.35],
+        [Infinity, 0.37]
+    ];
+
+    let previous = 0;
+
+    for (let [limit, rate] of brackets){
+        if (taxable > previous){
+            let taxedAmount = Math.min(taxable, limit) - previous;
+            tax += taxedAmount * rate;
+            previous = limit;
+        }
+    }
+
+    return tax;
+}
+
+function update(){
+
+    let status = document.getElementById("status").value;
+    let dependent = document.getElementById("dependent").value;
+    let w2 = parseFloat(document.getElementById("w2").value) || 0;
+    let self = parseFloat(document.getElementById("self").value) || 0;
+    let withheld = parseFloat(document.getElementById("withheld").value) || 0;
+
+    let totalIncome = w2 + self;
+
+    let standardDeduction = 0;
+
+    if (status === "single") standardDeduction = 14600;
+    if (status === "married") standardDeduction = 29200;
+    if (status === "head") standardDeduction = 21900;
+
+    if (dependent === "yes"){
+        standardDeduction = Math.min(Math.max(w2 + 400, 1300), standardDeduction);
+    }
+
+    let taxable = calculateTaxableIncome(totalIncome, standardDeduction);
+    let federalTax = federalTax2025(taxable);
+    let seTax = self * 0.153;
+    let totalTax = federalTax + seTax;
+
+    let refund = withheld - totalTax;
+
+    document.getElementById("std").textContent = formatMoney(standardDeduction);
+    document.getElementById("totalIncome").textContent = formatMoney(totalIncome);
+    document.getElementById("taxable").textContent = formatMoney(taxable);
+    document.getElementById("federalTax").textContent = formatMoney(federalTax);
+    document.getElementById("seTax").textContent = formatMoney(seTax);
+    document.getElementById("withholding").textContent = formatMoney(withheld);
+
+    let mainResult = document.getElementById("mainResult");
+
+    if (totalIncome === 0){
+        mainResult.textContent = "Enter income to see results";
+        mainResult.className = "result-main";
+    } else if (refund >= 0){
+        mainResult.textContent = "Refund: " + formatMoney(refund);
+        mainResult.className = "result-main refund";
+    } else {
+        mainResult.textContent = "Amount Owed: " + formatMoney(Math.abs(refund));
+        mainResult.className = "result-main owed";
+    }
+}
+
+document.querySelectorAll("input, select").forEach(el=>{
+    el.addEventListener("input", update);
+});
+</script>
+
 </body>
 </html>
