@@ -1,162 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Glossary | Student Tax Studio</title>
+  <title>Glossary</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="navbar">
+<header class="navbar">
   <div class="nav-left">Student Tax Studio</div>
-  <div class="nav-right">
+  <nav class="nav-right">
     <a href="index.html">Home</a>
     <a href="calculator.html">Calculator</a>
-    <a href="glossary.html" class="active">Glossary</a>
+    <a href="glossary.html">Glossary</a>
     <a href="about.html">About</a>
-  </div>
+  </nav>
+</header>
+
+<main class="container">
+
+<h1>Tax Glossary & Filing Guide</h1>
+
+<section class="card grid">
+
+<div class="info-box">
+<h3>W-2 Form</h3>
+<p>Issued by your employer showing wages earned and taxes withheld.</p>
 </div>
 
-<div class="page-container">
-
-  <div class="content-card">
-
-    <h1>Tax Glossary & Filing Guide</h1>
-
-    <div class="glossary-grid">
-
-      <div class="gloss-card">
-        <h3>W-2 Form</h3>
-        <p>
-          A W-2 is issued by your employer and reports your total wages earned and
-          federal/state taxes withheld during the year. You use this form to enter
-          income and withholding when filing your tax return.
-        </p>
-      </div>
-
-      <div class="gloss-card">
-        <h3>Standard Deduction</h3>
-        <p>
-          A fixed IRS amount that reduces taxable income before tax is calculated.
-          Most college students use the standard deduction rather than itemizing.
-        </p>
-      </div>
-
-      <div class="gloss-card">
-        <h3>Taxable Income</h3>
-        <p>
-          The amount remaining after deductions that is actually taxed
-          using federal tax brackets.
-        </p>
-      </div>
-
-      <div class="gloss-card">
-        <h3>Withholding</h3>
-        <p>
-          Taxes taken out of your paycheck during the year.
-          If too much is withheld, you receive a refund.
-          If too little is withheld, you may owe money.
-        </p>
-      </div>
-
-      <div class="gloss-card">
-        <h3>Self-Employment Income</h3>
-        <p>
-          Income earned from freelance or contract work (often reported on a 1099).
-          This income is subject to both income tax and self-employment tax.
-        </p>
-      </div>
-
-      <div class="gloss-card">
-        <h3>Marginal Tax Rate</h3>
-        <p>
-          The rate applied to your last dollar earned.
-          The U.S. uses progressive brackets, meaning higher income
-          portions are taxed at higher rates.
-        </p>
-      </div>
-
-    </div>
-
-    <hr class="section-divider">
-
-    <h2>State Income Taxes</h2>
-
-    <p>
-      In addition to federal taxes, many states require their own income tax filing.
-      State tax rules vary widely and may use different brackets or flat rates.
-    </p>
-
-    <div class="state-box">
-      <strong>States with NO state income tax:</strong><br>
-      Texas, Florida, Nevada, Washington, Wyoming, South Dakota, Alaska.
-    </div>
-
-    <p>
-      Why this matters:
-    </p>
-
-    <ul class="bullet-list">
-      <li>You may need to file a separate state return.</li>
-      <li>State withholding appears on your W-2.</li>
-      <li>Refunds or amounts owed may differ between federal and state filings.</li>
-      <li>Some states use flat taxes, others use progressive brackets.</li>
-    </ul>
-
-    <p>
-      This calculator estimates federal income tax only.
-      State filing requirements must be checked separately.
-    </p>
-
-    <hr class="section-divider">
-
-    <h2>Step-by-Step Filing Overview</h2>
-
-    <ol class="step-list">
-      <li>
-        <strong>Gather Documents:</strong>
-        W-2 forms, any 1099 forms, Social Security number,
-        and bank information for direct deposit.
-      </li>
-
-      <li>
-        <strong>Choose a Filing Platform:</strong>
-        IRS Free File (if eligible), FreeTaxUSA, TurboTax, or H&R Block.
-      </li>
-
-      <li>
-        <strong>Enter Income Information:</strong>
-        Input W-2 and 1099 details exactly as shown.
-      </li>
-
-      <li>
-        <strong>Review Deductions & Credits:</strong>
-        Most students use the standard deduction.
-      </li>
-
-      <li>
-        <strong>Review Refund or Amount Owed:</strong>
-        Confirm numbers before submitting.
-      </li>
-
-      <li>
-        <strong>Submit Electronically:</strong>
-        E-filing is faster and typically processes within 21 days.
-      </li>
-    </ol>
-
-    <div class="important-note">
-      Federal tax returns are generally due April 15.
-      If you do not file when required, penalties and interest may apply.
-    </div>
-
-  </div>
-
+<div class="info-box">
+<h3>Standard Deduction</h3>
+<p>IRS fixed amount reducing taxable income before tax is calculated.</p>
 </div>
 
-<footer>
-  Educational tool only. Not tax advice.
-</footer>
+<div class="info-box">
+<h3>Taxable Income</h3>
+<p>Income remaining after deductions.</p>
+</div>
+
+<div class="info-box">
+<h3>Withholding</h3>
+<p>Taxes already taken from your paycheck.</p>
+</div>
+
+<div class="info-box">
+<h3>Dependent</h3>
+<p>If claimed by someone else, your deduction may change.</p>
+</div>
+
+</section>
+
+<section class="card">
+<h2>State Income Taxes</h2>
+<p>States with no income tax: Texas, Florida, Nevada, Washington, Wyoming, South Dakota, Alaska.</p>
+<p>State taxes may require separate filing and affect your refund or balance.</p>
+</section>
+
+<section class="card">
+<h2>How To File</h2>
+<ol>
+<li>Gather W-2 and 1099 forms.</li>
+<li>Choose IRS Free File, FreeTaxUSA, TurboTax, or H&R Block.</li>
+<li>Enter income exactly as shown.</li>
+<li>Review deductions and credits.</li>
+<li>Submit electronically by April 15.</li>
+</ol>
+</section>
+
+</main>
+
+<footer>Educational tool only. Not tax advice.</footer>
 
 </body>
 </html>
