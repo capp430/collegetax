@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Student Tax Studio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Tax Studio</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -16,50 +18,45 @@
   </div>
 </nav>
 
-<div class="container">
+<div class="page-container">
 
-  <div class="card">
+  <section class="card hero">
     <h1>Federal Filing Clarity for College Students</h1>
-    <p>
-      Understand whether you need to file, how federal taxes are calculated,
-      and what your refund or balance might look like.
-    </p>
-    <a href="calculator.html"><button>Start Calculator</button></a>
-  </div>
+    <p>Understand whether you need to file, how federal taxes are calculated, and what your refund or balance might look like.</p>
+    <button onclick="location.href='calculator.html'">Start Calculator</button>
+  </section>
 
-  <div class="card">
-    <h1>Why Use Student Tax Studio?</h1>
+  <section class="card">
+    <h2>Why Use Student Tax Studio?</h2>
+    <div class="feature-grid">
 
-    <div class="features">
-      <div class="feature-box" onclick="location.href='calculator.html'">
+      <div class="feature-card" onclick="location.href='calculator.html'">
         <h3>Smart Filing Logic</h3>
-        <p>Evaluates income thresholds and filing rules.</p>
+        <p>Evaluates income thresholds, withholding, and self-employment rules to determine likely filing requirements.</p>
       </div>
 
-      <div class="feature-box" onclick="location.href='calculator.html'">
+      <div class="feature-card" onclick="location.href='calculator.html'">
         <h3>Clear Financial Breakdown</h3>
-        <p>Progressive bracket calculation with deduction logic.</p>
+        <p>Structured federal income and bracket analysis displayed in a transparent format.</p>
       </div>
 
-      <div class="feature-box" onclick="location.href='glossary.html'">
+      <div class="feature-card" onclick="location.href='glossary.html'">
         <h3>Plain-Language Explanations</h3>
-        <p>Learn tax terms and filing steps clearly.</p>
+        <p>Understand deductions, tax brackets, and key filing concepts without accounting knowledge.</p>
       </div>
-    </div>
-  </div>
 
-  <div class="card">
-    <h2>Federal Scope</h2>
-    <p>
-      This platform estimates federal income tax only. 
-      State filing requirements vary and are not calculated here.
-    </p>
-  </div>
+    </div>
+  </section>
+
+  <section class="card scope-card">
+    <h3>Federal Scope</h3>
+    <p>This platform estimates federal income tax only. State tax filing requirements vary and are not calculated here.</p>
+  </section>
 
 </div>
 
 <footer>
-  Educational tool only. Not tax advice.
+Educational tool only. Not tax advice.
 </footer>
 
 </body>
