@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Student Tax Studio – Calculator</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+    <title>Calculator - Student Tax Studio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="navbar">
-  <div class="nav-logo">Student Tax Studio</div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="calculator.html">Calculator</a>
-    <a href="guide.html">Learn</a>
-    <a href="terms.html">Glossary</a>
-    <a href="about.html">About</a>
-  </div>
-</div>
+<nav class="navbar">
+    <div class="nav-logo">Student Tax Studio</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="calculator.html">Calculator</a>
+        <a href="guide.html">Learn</a>
+        <a href="terms.html">Glossary</a>
+        <a href="about.html">About</a>
+    </div>
+</nav>
 
 <div class="container">
 
-<div class="card fade-in">
-  <h2>Your Information</h2>
+    <div class="card">
+        <h1>Your Information</h1>
+        <div class="input-grid">
+            <div>
+                <label>Filing Status</label>
+                <select id="filingStatus">
+                    <option value="single">Single</option>
+                    <option value="married">Married Filing Jointly</option>
+                    <option value="head">Head of Household</option>
+                </select>
+            </div>
 
-  <div class="form-grid">
-    <div>
-      <label>Filing Status</label>
-      <select id="status">
-        <option value="single">Single</option>
-        <option value="married">Married Filing Jointly</option>
-        <option value="hoh">Head of Household</option>
-      </select>
+            <div>
+                <label>W-2 Income ($)</label>
+                <input id="w2Income" type="number">
+            </div>
+
+            <div>
+                <label>Federal Tax Withheld ($)</label>
+                <input id="withholding" type="number">
+            </div>
+
+            <div>
+                <label>Self-Employment Income ($)</label>
+                <input id="selfEmployment" type="number">
+            </div>
+        </div>
     </div>
 
-    <div>
-      <label>W-2 Income ($)</label>
-      <input id="income" type="number">
+    <div class="card">
+        <h1>Estimated Outcome</h1>
+        <div id="refundAmount" class="result-amount"></div>
+
+        <div class="section-divider"></div>
+
+        <div class="breakdown-grid">
+            <div>Standard Deduction</div>
+            <div id="standardDeduction"></div>
+
+            <div>Taxable Income</div>
+            <div id="taxableIncome"></div>
+
+            <div>Federal Income Tax</div>
+            <div id="federalTax"></div>
+
+            <div>Self-Employment Tax</div>
+            <div id="seTax"></div>
+
+            <div>Total Withholding</div>
+            <div id="withholdingTotal"></div>
+        </div>
     </div>
 
-    <div>
-      <label>Federal Tax Withheld ($)</label>
-      <input id="withheld" type="number">
-    </div>
-
-    <div>
-      <label>Self-Employment Income ($)</label>
-      <input id="self" type="number">
-    </div>
-  </div>
 </div>
 
-<div class="card fade-in">
-  <h2>Estimated Outcome</h2>
-
-  <div id="refundAmount" class="refund-amount">$0.00</div>
-
-  <div class="divider"></div>
-
-  <div class="breakdown">
-    <div>Standard Deduction</div>
-    <div id="deductionRow">$0</div>
-
-    <div>Taxable Income</div>
-    <div id="taxableRow">$0</div>
-
-    <div>Federal Income Tax</div>
-    <div id="taxRow">$0</div>
-
-    <div>Self-Employment Tax</div>
-    <div id="seTaxRow">$0</div>
-
-    <div>Total Withholding</div>
-    <div id="withholdingRow">$0</div>
-  </div>
-</div>
-
-</div>
+<footer>
+    Educational tool only. Not tax advice.
+</footer>
 
 <script src="script.js"></script>
 </body>
