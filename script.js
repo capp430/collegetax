@@ -1,4 +1,5 @@
 function calculate() {
+
   const income = parseFloat(document.getElementById("income").value) || 0;
   const withheld = parseFloat(document.getElementById("withheld").value) || 0;
 
@@ -11,7 +12,8 @@ function calculate() {
   if (taxableIncome <= 11600) {
     tax = taxableIncome * 0.10;
   } else if (taxableIncome <= 47150) {
-    tax = 11600 * 0.10 + (taxableIncome - 11600) * 0.12;
+    tax = 11600 * 0.10 +
+          (taxableIncome - 11600) * 0.12;
   } else {
     tax = 11600 * 0.10 +
           (47150 - 11600) * 0.12 +
