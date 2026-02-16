@@ -286,4 +286,50 @@ footer {
   border-radius: 16px;
   margin: 15px 0;
 }
+/* NOTES card styling (calculator page) */
+.notes-card {
+  background: linear-gradient(145deg, #ffffff, #f7fbff);
+  border: 1px solid #e6eefc;
+  padding: 26px;
+  border-radius: 14px;
+  margin-top: 28px;
+  box-shadow: 0 12px 30px rgba(2,6,23,0.04);
+}
+
+.notes-card h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #123a6b;
+}
+
+.notes-card details {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #f1f8ff;
+  border: 1px solid #e1efff;
+}
+
+.notes-card summary {
+  cursor: pointer;
+  font-weight: 600;
+  outline: none;
+}
+
+.note-body {
+  margin-top: 10px;
+  color: #344e72;
+  font-size: 14px;
+}
+
+.note-body .muted {
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.notes-card ul {
+  margin: 8px 0 0 18px;
+}
+
 
