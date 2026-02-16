@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Calculator - Student Tax Studio</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator | Student Tax Studio</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
 </head>
 <body>
 
@@ -16,85 +19,60 @@
   </div>
 </nav>
 
-<div class="container">
+<div class="page-container">
 
-  <!-- INPUT SECTION -->
-  <div class="card">
-    <h1>Your Information</h1>
+<section class="card">
+<h2>Your Information</h2>
 
-    <div class="input-grid">
-
-      <div>
-        <label>Filing Status</label>
-        <select id="filingStatus">
-          <option value="single">Single</option>
-          <option value="married">Married Filing Jointly</option>
-          <option value="head">Head of Household</option>
-        </select>
-      </div>
-
-      <div>
-        <label>W-2 Income ($)</label>
-        <input id="w2Income" type="number" placeholder="0">
-      </div>
-
-      <div>
-        <label>Federal Tax Withheld ($)</label>
-        <input id="withholding" type="number" placeholder="0">
-      </div>
-
-      <div>
-        <label>Self-Employment Income ($)</label>
-        <input id="selfEmployment" type="number" placeholder="0">
-      </div>
-
-    </div>
+<div class="form-grid">
+  <div>
+    <label>Filing Status</label>
+    <select id="status">
+      <option value="single">Single</option>
+      <option value="hoh">Head of Household</option>
+    </select>
   </div>
 
-  <!-- OUTCOME SECTION -->
-  <div class="card">
-
-    <h1>Estimated Outcome</h1>
-
-    <div id="refundAmount" class="result-amount"></div>
-
-    <div class="section-divider"></div>
-
-    <div class="breakdown-grid">
-
-      <div>Standard Deduction</div>
-      <div id="standardDeduction">$0</div>
-
-      <div>Taxable Income</div>
-      <div id="taxableIncome">$0</div>
-
-      <div>Federal Income Tax</div>
-      <div id="federalTax">$0</div>
-
-      <div>Self-Employment Tax</div>
-      <div id="seTax">$0</div>
-
-      <div>Total Withholding</div>
-      <div id="withholdingTotal">$0</div>
-
-    </div>
-
-    <div class="section-divider"></div>
-
-    <p>
-      Filing may be required if your income exceeds the standard deduction,
-      or if you owe self-employment tax. This estimate reflects federal income tax only.
-    </p>
-
+  <div>
+    <label>W-2 Income ($)</label>
+    <input type="number" id="income" value="0">
   </div>
+
+  <div>
+    <label>Federal Tax Withheld ($)</label>
+    <input type="number" id="withheld" value="0">
+  </div>
+
+  <div>
+    <label>Self-Employment Income ($)</label>
+    <input type="number" id="selfIncome" value="0">
+  </div>
+</div>
+
+</section>
+
+<section class="card result-card">
+<h2>Estimated Outcome</h2>
+
+<div id="resultText"></div>
+
+<div class="divider"></div>
+
+<div class="breakdown-grid">
+  <div><span>Standard Deduction</span><span id="deduction"></span></div>
+  <div><span>Taxable Income</span><span id="taxable"></span></div>
+  <div><span>Federal Income Tax</span><span id="federalTax"></span></div>
+  <div><span>Self-Employment Tax</span><span id="seTax"></span></div>
+  <div><span>Total Withholding</span><span id="withholdingTotal"></span></div>
+</div>
+
+</section>
 
 </div>
 
 <footer>
-  Educational tool only. Not tax advice.
+Educational tool only. Not tax advice.
 </footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>
