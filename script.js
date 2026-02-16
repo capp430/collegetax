@@ -1,58 +1,53 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
-  // Fade animation
-  const faders = document.querySelectorAll(".fade-in");
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add("visible");
-      }
-    });
-  });
-  faders.forEach(el=>observer.observe(el));
+    if (!document.getElementById("w2Income")) return;
 
-  const incomeInput=document.getElementById("income");
-  if(!incomeInput) return;
+    const filingStatus = document.getElementById("filingStatus");
+    const w2Income = document.getElementById("w2Income");
+    const withholding = document.getElementById("withholding");
+    const selfEmployment = document.getElementById("selfEmployment");
 
-  const withheldInput=document.getElementById("withheld");
-  const selfInput=document.getElementById("self");
-  const statusInput=document.getElementById("status");
+    function calculate() {
 
-  const refundAmount=document.getElementById("refundAmount");
-  const deductionRow=document.getElementById("deductionRow");
-  const taxableRow=document.getElementById("taxableRow");
-  const taxRow=document.getElementById("taxRow");
-  const seTaxRow=document.getElementById("seTaxRow");
-  const withholdingRow=document.getElementById("withholdingRow");
+        let income = parseFloat(w2Income.value) || 0;
+        let withheld = parseFloat(withholding.value) || 0;
+        let selfEmp = parseFloat(selfEmployment.value) || 0;
 
-  const deductions={single:15000,married:30000,hoh:22500};
+        let standardDeduction = {
+            single: 14600,
+            married: 29200,
+            head: 21900
+        };
 
-  function calculate(){
-    let income=parseFloat(incomeInput.value)||0;
-    let withheld=parseFloat(withheldInput.value)||0;
-    let selfIncome=parseFloat(selfInput.value)||0;
+        let deduction = standardDeduction[filingStatus.value] || 14600;
 
-    let total=income+selfIncome;
-    let deduction=deductions[statusInput.value];
-    let taxable=Math.max(0,total-deduction);
+        let taxable = Math.max(0, income - deduction);
 
-    let tax=taxable*0.12;
-    let seTax=selfIncome*0.153;
-    let totalTax=tax+seTax;
-    let balance=withheld-totalTax;
+        let tax = 0;
 
-    deductionRow.textContent="$"+deduction.toLocaleString();
-    taxableRow.textContent="$"+taxable.toLocaleString();
-    taxRow.textContent="$"+tax.toFixed(2);
-    seTaxRow.textContent="$"+seTax.toFixed(2);
-    withholdingRow.textContent="$"+withheld.toLocaleString();
+        if (taxable <= 11600) tax = taxable * 0.10;
+        else if (taxable <= 47150) tax = 11600 * 0.10 + (taxable - 11600) * 0.12;
+        else tax = 11600 * 0.10 + (47150 - 11600) * 0.12 + (taxable - 47150) * 0.22;
 
-    refundAmount.textContent=(balance>=0?"Refund: $":"Owed: $")+Math.abs(balance).toFixed(2);
-  }
+        let seTax = selfEmp * 0.153;
 
-  incomeInput.addEventListener("input",calculate);
-  withheldInput.addEventListener("input",calculate);
-  selfInput.addEventListener("input",calculate);
-  statusInput.addEventListener("change",calculate);
+        let totalTax = tax + seTax;
+        let net = withheld - totalTax;
 
+        document.getElementById("refundAmount").innerText =
+            net >= 0 ? "Refund: $" + net.toFixed(2) : "Amount Owed: $" + Math.abs(net).toFixed(2);
+
+        document.getElementById("taxableIncome").innerText = "$" + taxable.toFixed(2);
+        document.getElementById("federalTax").innerText = "$" + tax.toFixed(2);
+        document.getElementById("seTax").innerText = "$" + seTax.toFixed(2);
+        document.getElementById("withholdingTotal").innerText = "$" + withheld.toFixed(2);
+        document.getElementById("standardDeduction").innerText = "$" + deduction.toFixed(2);
+    }
+
+    filingStatus.addEventListener("change", calculate);
+    w2Income.addEventListener("input", calculate);
+    withholding.addEventListener("input", calculate);
+    selfEmployment.addEventListener("input", calculate);
+
+    calculate();
 });
