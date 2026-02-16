@@ -16,7 +16,9 @@ function calculate() {
 
   let taxableIncome = Math.max(0, totalIncome - standardDeduction);
 
-  let tax = 0;
+ let tax = 0;
+
+if (status === "single") {
 
   if (taxableIncome <= 11600) {
     tax = taxableIncome * 0.10;
@@ -32,6 +34,28 @@ function calculate() {
           (100525 - 47150) * 0.22 +
           (taxableIncome - 100525) * 0.24;
   }
+
+}
+
+if (status === "head") {
+
+  if (taxableIncome <= 16550) {
+    tax = taxableIncome * 0.10;
+  } else if (taxableIncome <= 63100) {
+    tax = 16550 * 0.10 + (taxableIncome - 16550) * 0.12;
+  } else if (taxableIncome <= 100500) {
+    tax = 16550 * 0.10 +
+          (63100 - 16550) * 0.12 +
+          (taxableIncome - 63100) * 0.22;
+  } else {
+    tax = 16550 * 0.10 +
+          (63100 - 16550) * 0.12 +
+          (100500 - 63100) * 0.22 +
+          (taxableIncome - 100500) * 0.24;
+  }
+
+}
+
 
   let seTax = selfIncome * 0.153;
   let totalTax = tax + seTax;
