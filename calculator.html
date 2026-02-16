@@ -1,93 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculator | Student Tax Studio</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Federal Tax Calculator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav class="navbar">
-  <div class="logo">Student Tax Studio</div>
-  <div class="nav-links">
+<header class="navbar">
+  <div class="nav-left">Student Tax Studio</div>
+  <nav class="nav-right">
     <a href="index.html">Home</a>
-    <a href="calculator.html" class="active">Calculator</a>
+    <a href="calculator.html">Calculator</a>
     <a href="glossary.html">Glossary</a>
     <a href="about.html">About</a>
-  </div>
-</nav>
+  </nav>
+</header>
 
-<div class="page-wrapper">
+<main class="container">
 
-  <div class="card">
-    <h1>Federal Tax Calculator</h1>
-    <div class="badge">Using 2025 Federal Tax Brackets & Standard Deduction</div>
+  <h1>Federal Tax Calculator</h1>
+  <div class="badge">Using 2025 Federal Tax Brackets & Standard Deduction</div>
 
-    <div class="form-group">
-      <label>Filing Status</label>
-      <select id="status">
-        <option value="single">Single</option>
-        <option value="head">Head of Household</option>
-      </select>
-    </div>
+  <section class="card">
 
-    <div class="form-group">
-      <label>Are You Claimed as a Dependent?</label>
-      <select id="dependent">
-        <option value="no">No</option>
-        <option value="yes">Yes</option>
-      </select>
-      <small>Dependent status may reduce your standard deduction.</small>
-    </div>
+    <label>Filing Status</label>
+    <select id="status">
+      <option value="single">Single</option>
+      <option value="married">Married Filing Jointly</option>
+      <option value="hoh">Head of Household</option>
+    </select>
 
-    <div class="form-group">
-      <label>W-2 Income ($)</label>
-      <input type="number" id="w2" placeholder="Enter wages">
-    </div>
+    <label>Are You Claimed as a Dependent?</label>
+    <select id="dependent">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
 
-    <div class="form-group">
-      <label>Self-Employment Income ($)</label>
-      <input type="number" id="self">
-    </div>
+    <label>W-2 Income ($)</label>
+    <input type="number" id="w2" placeholder="Enter wages">
 
-    <div class="form-group">
-      <label>Federal Tax Withheld ($)</label>
-      <input type="number" id="withheld">
-    </div>
-  </div>
+    <label>Self-Employment Income ($)</label>
+    <input type="number" id="self">
 
-  <div class="card results-card">
+    <label>Federal Tax Withheld ($)</label>
+    <input type="number" id="withheld">
+
+  </section>
+
+  <section class="card results">
+
     <h2>Estimated Outcome</h2>
-    <div id="resultMessage" class="result-title">
-      Enter income to see results
-    </div>
 
-    <hr>
+    <div class="divider"></div>
 
-    <div class="section-title">Income & Deduction Summary</div>
-    <div class="line"><span>Standard Deduction</span><span id="deduction">$0</span></div>
-    <div class="line"><span>Total Income</span><span id="totalIncome">$0</span></div>
-    <div class="line"><span>Taxable Income</span><span id="taxable">$0</span></div>
+    <div class="result-row"><span>Standard Deduction</span><span id="deduction">$0</span></div>
+    <div class="result-row"><span>Total Income</span><span id="total">$0</span></div>
+    <div class="result-row"><span>Taxable Income</span><span id="taxable">$0</span></div>
 
-    <hr>
+    <div class="divider"></div>
 
-    <div class="section-title">Tax Calculation</div>
-    <div class="line"><span>Federal Income Tax</span><span id="federalTax">$0</span></div>
-    <div class="line"><span>Self-Employment Tax (15.3%)</span><span id="seTax">$0</span></div>
+    <div class="result-row"><span>Federal Income Tax</span><span id="federal">$0</span></div>
+    <div class="result-row"><span>Self-Employment Tax</span><span id="se">$0</span></div>
 
-    <hr>
+    <div class="divider"></div>
 
-    <div class="line total-line"><span>Total Withholding</span><span id="totalWithheld">$0</span></div>
-    <div class="line total-line"><span>Refund / Amount Owed</span><span id="finalAmount">$0</span></div>
-  </div>
+    <div class="result-row"><span>Total Withholding</span><span id="withholding">$0</span></div>
+    <div class="result-row highlight"><span>Refund / Amount Owed</span><span id="refund">$0</span></div>
 
-</div>
+  </section>
 
-<footer>
-Educational tool only. Not tax advice.
-</footer>
+</main>
+
+<footer>Educational tool only. Not tax advice.</footer>
 
 <script src="script.js"></script>
 </body>
